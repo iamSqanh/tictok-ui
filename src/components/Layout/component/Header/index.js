@@ -25,6 +25,31 @@ const MENU_ITEM = [
     {
         icon: <FontAwesomeIcon icon={faLanguage} />,
         title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'EN',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'VI',
+                    title: 'Tiếng việt',
+                },
+                {
+                    type: 'language',
+                    code: 'US',
+                    title: 'United States',
+                },
+                {
+                    type: 'language',
+                    code: 'CN',
+                    title: 'China',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -45,6 +70,16 @@ function Header() {
             setSearchResult([]);
         }, 0);
     }, []);
+
+    // handle logic
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                // handle change language
+                break;
+            default:
+        }
+    };
 
     return (
         <header className={cx('wrapper')}>
@@ -82,7 +117,7 @@ function Header() {
                 <div className={cx('actions')}>
                     <Button text>Upload</Button>
                     <Button primary>Login</Button>
-                    <Menu items={MENU_ITEM}>
+                    <Menu items={MENU_ITEM} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
